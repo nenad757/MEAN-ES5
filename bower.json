@@ -1,0 +1,38 @@
+{
+  "name": "MEAN_Starter_ES5",
+  "version": "1.0.0",
+  "authors": [
+    "Erwan DATIN (MacKentoch)"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.4",
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "angular-bootstrap": "~0.13.3",
+    "angular-loading-bar": "~0.8.0",
+    "angular-resource": "~1.4.4",
+    "lodash": "~3.10.1",
+    "html5shiv": "~3.7.3",
+    "respondJS": "~1.4.2",
+    "bootswatch": "~3.3",
+    "WOW": "~1.1.2",
+    "animate.css": "~3.4.0",
+    "components-font-awesome": "~4.4.0",
+    "angular-scroll": "~0.7.2",
+    "angular-animate": "~1.4.4",
+    "angularjs-toaster": "~0.4.15",
+    "ng-password-strength": "~0.2.1",
+    "angular-validation-match": "~1.5.1"
+  },
+  "resolutions": {
+    "angular": "~1.4.4"
+  }
+}

@@ -1,0 +1,45 @@
+@import 'app.style_var';
+
+
+/*============================== 
+	common : general
+ ==============================*/
+ body{	
+	 
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.4285;
+    background-color: $BG_COLOR;
+}
+
+
+
+.margintop70px{
+  margin: {
+    top:70px;
+  }  
+}
+
+.margintop120px{
+  margin: {
+    top:120px;
+  }
+}
+
+
+/*============================== 
+	home
+ ==============================*/
+#sectionHome{
+  @extend .margintop70px;
+}
+
+/*============================== 
+	register
+ ==============================*/
+#registerForm{
+  @extend .margintop70px;
+}
+
+
+

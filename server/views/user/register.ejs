@@ -1,0 +1,165 @@
+<% layout('layouts/layout_main') -%>
+
+    <div class="container" ng-cloak>
+
+      <section id="registerForm" ng-controller="RegisterMainController as MainCtrl">
+
+
+      <% if(message.length > 0) { %>
+      <div class="row ">
+        <div class="col-lg-6 col-lg-offset-3">
+           <div class="alert alert-dismissible alert-danger fade in">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Sorry</strong>
+            <p><%= message %> </p>
+          </div>
+        </div>
+      </div>
+      <% } %>
+
+        <div class="row ">
+          <div class="col-lg-6 col-lg-offset-3">
+            <div class="panel panel-default">
+                  <div class="panel-body">
+                    <form class="form-horizontal form-signin" action="/register" novalidate method="post" name="myForm">
+                      <fieldset>
+                        <h2 class="page-header"><i class="fa fa-user-plus"></i>&nbsp;Register</h2>
+
+                        <h5 class="page-header"><i class="fa fa-user"></i>&nbsp;Me</h5>
+                        <!-- fistName input -->
+                        <div class="form-group" ng-class="{'has-error':myForm.firstName.$error.required && (myForm.$submitted || myForm.firstName.$touched)}">
+                          <label for="inputFirstName"  class="col-lg-3 control-label">First name</label>
+                          <div class="col-lg-9">
+                            <input type="text" required="" name="firstName" ng-model="user.firstName" class="form-control" id="inputFirstName" placeholder="First name">
+                          </div>
+                        </div>
+                        <!-- fistName validation -->
+                        <div class="form-group" id ="validationDiv" ng-show="myForm.$submitted || myForm.firstName.$touched">
+                          <div class="col-lg-9 col-lg-offset-3 col-xs-12 col-sm-12"  ng-show="myForm.$submitted || myForm.firstName.$touched">
+                            <div ng-show="myForm.firstName.$error.required">
+                                <span class="label label-danger" >Please enter your first name.</span>
+                            </div>                     
+                          </div>
+                        </div>
+
+                        <!-- lastName input -->
+                        <div class="form-group" ng-class="{'has-error':myForm.lastName.$error.required && (myForm.$submitted || myForm.lastName.$touched)}">
+                          <label for="inputLastName"  class="col-lg-3 control-label">Last name</label>
+                          <div class="col-lg-9">
+                            <input type="text" required="" name="lastName" ng-model="user.lastName" class="form-control" id="inputLastName" placeholder="Last name">
+                          </div>
+                        </div> 
+                        <!-- lastName validation -->
+                        <div class="form-group" id ="validationDiv" ng-show="myForm.$submitted || myForm.lastName.$touched">
+                          <div class="col-lg-9 col-lg-offset-3 col-xs-12 col-sm-12">
+                            <div ng-show="myForm.lastName.$error.required">
+                                <span class="label label-danger" >Please enter your last name.</span>
+                            </div>                     
+                          </div>                        
+                        </div>
+
+                        <!-- email input-->
+                        <div class="form-group" ng-class="{'has-error':(myForm.email.$error.required || !myForm.email.$valid) && (myForm.$submitted || myForm.email.$touched)}">
+
+                          <label for="inputEmail"  class="col-lg-3 control-label">Email</label>
+                          <div class="col-lg-9">
+                            <input type="email" required="" name="email" ng-model="user.email" class="form-control" id="inputEmail" placeholder="Email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">
+                          </div>
+                        </div>
+                        <!-- email validation -->
+                        <div class="form-group" id ="validationDiv"  ng-show="myForm.$submitted || myForm.email.$touched">
+                          <div class="col-lg-9 col-lg-offset-3 col-xs-12 col-sm-12">
+                            <div ng-show="myForm.email.$error.required">
+                                <span class="label label-danger" >Please enter your email.</span>
+                            </div>
+                            <div ng-show="!myForm.email.$valid && !myForm.email.$error.required">
+                               <span class="label label-danger" >This is not a valid email.</span>
+                            </div> 
+                          </div> 
+                        </div>                         
+
+                        <h5 class="page-header"><i class="fa fa-user-secret"></i>&nbsp;Connexion information</h5>
+                        <!-- login input -->
+                        <div class="form-group">
+                          <label for="inputLogin" class="col-lg-3 control-label">Login</label>
+                          <div class="col-lg-9">
+                            <input type="text" required="" name="username" class="form-control" id="inputLogin" placeholder="Login name" ng-pattern="/^.{6,}$/" ng-model="user.login" >
+                          </div>
+                        </div> 
+                        <!-- login validation -->
+                        <div class="form-group" id ="validationDiv"  ng-show="myForm.$submitted || myForm.username.$touched">
+                          <div class="col-lg-9 col-lg-offset-3 col-xs-12 col-sm-12">
+                            <div ng-show="myForm.username.$error.required">
+                                <span class="label label-danger" >Please enter a login.</span>
+                            </div>
+                            <div ng-show="!myForm.username.$valid && !myForm.username.$error.required">
+                               <span class="label label-danger" >This is not a valid login (6 chars minimum).</span>
+                            </div> 
+                          </div> 
+                        </div>                          
+
+                        <!-- password input -->
+                        <div class="form-group">
+                          <label for="inputPassword" class="col-lg-3 control-label">Password</label>
+                          <div class="col-lg-9">
+                            <input type="password" required="" name="password" ng-model="user.pass"  class="form-control" id="inputPassword" placeholder="Password" ng-pattern="/^.{6,}$/">
+                          </div>
+                        </div>
+                        <!-- password strength indicator -->
+                        <div class="form-group" ng-class="{'has-error':myForm.confirmpassword.$error.match}">
+                          <div class="col-lg-9 col-lg-offset-3 col-xs-12 col-sm-12">
+                            <div class="progress progress-striped">
+                              <div id="passIndicator" ng-password-strength="user.pass" strength="passStrength" inner-class="progress-bar progress-success" inner-class-prefix="progress-bar-"></div>                       
+                            </div>
+                          </div>
+                        </div>
+                        <!-- password validation -->
+                        <div class="form-group" id ="validationDiv"  ng-show="myForm.$submitted || myForm.password.$touched">
+                          <div class="col-lg-9 col-lg-offset-3 col-xs-12 col-sm-12">
+                            <div class="passwordMarginTop" ng-show="myForm.password.$error.required">
+                                <span class="label label-danger" >Please enter a password.</span>
+                            </div>
+                            <div class="passwordMarginTop" ng-show="!myForm.password.$valid && !myForm.password.$error.required">
+                               <span class="label label-danger" >This is not a valid password (6 chars minimum).</span>
+                            </div> 
+                          </div> 
+                        </div>                         
+
+                        <!-- confirm password input -->
+                        <div class="form-group" id="validationDiv" ng-class="{'has-error':myForm.confirmpassword.$error.match && myForm.password.$valid}">
+                          <label for="inputConfirmPassword" class="col-lg-3 control-label">Confirm password</label>
+                          <div class="col-lg-9">
+                            <input type="password" name="confirmpassword" match="user.pass" ng-model="confirmPass" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password">
+                          </div>
+                        </div>
+                        <!-- password / confirm password match indicator -->
+                        <div class="form-group" id ="validationDiv" ng-class="{'has-error':myForm.confirmpassword.$error.match && myForm.password.$valid}">
+                          <div class="col-lg-9 col-lg-offset-3 col-xs-12 col-sm-12">
+                            <div class="">
+                              <div ng-show="myForm.confirmpassword.$error.match && myForm.password.$valid">
+                                  <span class="label label-danger" >Passwords do not match!</span>
+                              </div>                     
+                            </div>
+                          </div>
+                        </div>                        
+
+
+                         <!-- data-toggle="tooltip" data-placement="right" title="" data-original-title="Please fill all fields before submitting." --> 
+
+                        <!-- command buttons -->                      
+                        <div class="form-group">
+                          <div class="col-xs-10 col-xs-offset-2 col-sm-6 col-sm-offset-4 col-lg-8 col-lg-offset-4" >
+                            <a href="../"><button type="button" class="btn btn-default">Cancel</button></a>
+                            <button type="submit" ng-class="{'disabled':myForm.confirmpassword.$error.match || !myForm.$valid}"class="btn btn-primary" ng-click="update(user)">Submit</button>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+
+</div>

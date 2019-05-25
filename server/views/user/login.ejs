@@ -1,0 +1,55 @@
+<% layout('layouts/layout_main') -%>
+
+
+<div class="container" ng-controller="LoginMainController as MainCtrl">
+
+  <!-- taoster alert -->
+  <toaster-container  toaster-options="{
+                                      'position-class': 'toast-top-full-width', 
+                                      'progressBar': true,
+                                      'showDuration': '1000',
+                                      'hideDuration': '1000',
+                                      'timeOut': '1000',
+                                      'extendedTimeOut': '1000',
+                                      'showEasing': 'swing',
+                                      'hideEasing': 'linear',
+                                      'showMethod': 'fadeIn',
+                                      'hideMethod': 'fadeOut'                                          
+                                      }">
+  </toaster-container>
+
+
+  <section id="signinForm" class="margintop120px" ng-init="MainCtrl.errorLogin('<%= message %>')">
+      
+    <div class="row ">
+      <div class="col-md-4 col-md-offset-4">
+
+        <div class="panel panel-default">
+              <div class="panel-body">
+                  <form class="form-signin" action="/user/login", method="POST">
+                    <h2 class="form-signin-heading page-header"><i class="fa fa-sign-in"></i>&nbsp;Please sign in</h2>
+                    <label for="inputLogin" class="sr-only">Login</label>
+                    <input type="text" id="inputLogin" name="username" class="form-control" placeholder="Login" required autofocus>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+                    <hr />
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                  </form>
+                  <div class="row">
+                    <div class="col-lg-4 col-lg-offset-4">
+
+                    </div>
+                      <div id="boutonRegister" class="row">
+                        <div class="col-xs-8 col-xs-offset-1 col-sm-8 col-sm-offset-1 col-lg-8 col-lg-offset-4">
+                          <em class="text-right">create an account :</em>
+                          <a  class="btn btn-default btn-xs " href="/user/register"><span>register</span></a>
+                        </div>                          
+                      </div>                        
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</div> <!-- /container -->
+
