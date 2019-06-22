@@ -1,7 +1,5 @@
 MEAN Starter (ES5 version)
 ====================
-
-
 WHAT IS IT?
 
 This is a MEAN js starter written in ES5.
